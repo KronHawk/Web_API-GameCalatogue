@@ -11,10 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI_Games.Controllers.V1;
 using WebAPI_Games.Repository;
 using WebAPI_Games.Services;
 using WebAPI_Games.Services;
-
+using System.Reflection;
+using System.IO;
+using WebAPI_Games.Middlewere;
 
 namespace WebAPI_Games
 {
@@ -32,10 +35,19 @@ namespace WebAPI_Games
         {
             services.AddScoped<IGameService, GameServce>();
             services.AddScoped<IRepository, RepositoryGame>();
+
+            services.AddSingleton<IExmpleSingleton, ExemploCicloDeVida>();
+            services.AddScoped<IExmplecoped, ExemploCicloDeVida>();
+            services.AddTransient<IExmpleTransient, ExemploCicloDeVida>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI_Games", Version = "v1" });
+                
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                c.IncludeXmlComments(Path.Combine(basePath, fileName));
             });
         }
 
@@ -48,6 +60,7 @@ namespace WebAPI_Games
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI_Games v1"));
             }
+            app.UseMiddleware<ExcptionMiddleware>();
 
             app.UseHttpsRedirection();
 

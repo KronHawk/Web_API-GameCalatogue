@@ -49,7 +49,7 @@ namespace WebAPI_Games.Services
             };
         }
 
-        public async Task<GameViewModel> Put(GameInputModel game)
+        public async Task<GameViewModel> Post(GameInputModel game)
         {
             var entitieGame = await _gameRepository.Get(game.Name, game.Studio);
 
@@ -75,7 +75,7 @@ namespace WebAPI_Games.Services
             };
         }
 
-        public async Task Patch(Guid id, GameInputModel game)
+        public async Task Put(Guid id, GameInputModel game)
         {
             var entiteGame = await _gameRepository.Get(id);
 
@@ -114,41 +114,6 @@ namespace WebAPI_Games.Services
         public void Dispose()
         {
             _gameRepository?.Dispose();
-        }
-
-        Task<List<GameViewModel>> IGameService.Get(int Pages, int number)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<GameViewModel> IGameService.Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<GameViewModel> IGameService.Post(GameInputModel game)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IGameService.Put(Guid id, GameInputModel game)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IGameService.Patch(Guid id, double price)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IGameService.Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
         }
     }    
 }

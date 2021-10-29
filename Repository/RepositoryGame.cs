@@ -72,40 +72,5 @@ namespace WebAPI_Games.Repository
         {
             //Fechar conexão com o banco
         }
-
-        Task<List<Games>> IRepository.Get(int Pages, int number)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Games> IRepository.Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<List<Games>> IRepository.Get(string Name, string Studio)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository.Put(Games game)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository.Patch(Games game)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository.Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
